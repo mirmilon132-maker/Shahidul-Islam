@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shahidul Image Studio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      // Prevents FOUC (Flash of Unstyled Content) for dark mode
+      if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              'brand-primary': '#4f46e5',
+              'brand-secondary': '#7c3aed',
+              'brand-primary-dark': '#3b33b0',
+              'brand-secondary-dark': '#632eae',
+            },
+          },
+        },
+      }
+    </script>
+    <style>
+      .btn-3d {
+        transition: all 0.15s ease-out;
+        box-shadow: 0 5px 0 0 var(--shadow-color, #3b33b0);
+        transform: translateY(0);
+      }
+      .btn-3d:hover {
+        transform: translateY(-2px) scale(1.02);
+        box-shadow: 0 7px 0 0 var(--shadow-color, #3b33b0);
+      }
+      .btn-3d:active {
+        transform: translateY(5px) scale(1.0);
+        box-shadow: 0 0px 0 0 var(--shadow-color, #3b33b0);
+      }
+      .btn-3d-download {
+         --shadow-color: #3b33b0;
+      }
+      .btn-3d-download:hover {
+         --shadow-color: #632eae;
+      }
+
+      .comparison-slider-range {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        outline: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .comparison-slider-range::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 40px;
+        height: 40px;
+        cursor: ew-resize;
+      }
+
+      .comparison-slider-range::-moz-range-thumb {
+        width: 40px;
+        height: 40px;
+        cursor: ew-resize;
+        border: 0;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.29.1"
+  }
+}
+</script>
+</head>
+  <body class="bg-gray-100 dark:bg-gray-900 transition-colors duration-300">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
