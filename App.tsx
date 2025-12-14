@@ -1,4 +1,3 @@
-
 import React, { useState, useCallback, useEffect, useRef } from 'react';
 import ImageUploader from './components/ImageUploader';
 import ResultDisplay from './components/ResultDisplay';
@@ -23,7 +22,9 @@ const LOADING_MESSAGES = [
 type Theme = 'light' | 'dark';
 
 const App: React.FC = () => {
-  const [apiKey, setApiKey] = useState<string | null>(localStorage.getItem('gemini_api_key'));
+  const [apiKey, setApiKey] = useState<string | null>(() => {
+    return localStorage.getItem('gemini_api_key') || process.env.API_KEY || null;
+  });
   const [isSkipped, setIsSkipped] = useState<boolean>(false);
   const [originalFile, setOriginalFile] = useState<File | null>(null);
   const [originalImageSrc, setOriginalImageSrc] = useState<string | null>(null);
